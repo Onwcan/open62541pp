@@ -34,7 +34,8 @@ StatusCode historizeNode(Server& server, const NodeId& id, const HistorizingSett
     );
     setting.pollingInterval = settings.pollingInterval;
 
-    const StatusCode status = gathering.registerNodeId(
+    // not const, so the status can be moved out of the function
+    StatusCode status = gathering.registerNodeId(
         server.handle(), gathering.context, id.handle(), setting
     );
     if (status.isBad()) {
